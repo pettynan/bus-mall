@@ -7,6 +7,7 @@ var totalVotes = 0;
 // This array contains the DOM elements for the 3 images onscreen.
 var imgArray = [document.getElementById('img1'), document.getElementById('img2'), document.getElementById('img3')];
 
+var resultsTable = document.getElementById('resultsTable');
 
 // Constructor function for all catalogue item objects.
 function Item (itemName, filetype) {
@@ -67,45 +68,79 @@ function newItems() {
 }
 
 
-// These are the event listeners for all 3 images.
+// This function runs after 25 votes have been cast.
+function checkVoteLimit() {
+  if (totalVotes === 25) {
+    var theadEl = document.createElement('thead');
+    var trEl = document.createElement('tr');
+    var thEl = document.createElement('th');
+    thEl.textContent = 'Item Name';
+    trEl.appendChild(thEl);
+    var thVoteEl = document.createElement('th');
+    thVoteEl.textContent = '# of Votes';
+    trEl.appendChild(thVoteEl);
+    var thViewEl = document.createElement('th');
+    thViewEl.textContent = '# of Views';
+    trEl.appendChild(thViewEl);
+    theadEl.appendChild(trEl);
+    resultsTable.appendChild(theadEl);
 
 
-imgArray[0].addEventListener('click', function() {
-  totalVotes++;
-  if (totalVotes > 24) {
-    alert('You have completed the survey!');
+    for (var i = 0 ; i < allItems.length ; i++) {
+      trEl = document.createElement('tr');
+      thEl = document.createElement('th');
+      thEl.textContent = allItems[i].itemName;
+      trEl.appendChild(thEl);
+      var tdVoteEl = document.createElement('td');
+      tdVoteEl.textContent = allItems[i].voteCount;
+      trEl.appendChild(tdVoteEl);
+      var tdViewEl = document.createElement('td');
+      tdViewEl.textContent = allItems[i].viewCount;
+      trEl.appendChild(tdViewEl);
+
+      resultsTable.appendChild(trEl); // This line adds the finished row to the bottom of the table.
+    }
+
+    // These lines remove the event listeners, to disallow further voting.
+    imgArray[0].removeEventListener('click',handleImg1);
+    imgArray[1].removeEventListener('click',handleImg2);
+    imgArray[2].removeEventListener('click',handleImg3);
+
   }
+}
+
+// These are event handlers for each image.
+function handleImg1() {
+  totalVotes++;
   allItems[prevRandomArray[0]].voteCount ++;
   console.log('Voted for image 1');
-
+  checkVoteLimit();
   newItems();
+}
 
-});
-
-imgArray[1].addEventListener('click', function() {
+function handleImg2() {
   totalVotes++;
-  if (totalVotes > 24) {
-    alert('You have completed the survey!');
-  }
   allItems[prevRandomArray[1]].voteCount ++;
   console.log('Voted for image 2');
-
+  checkVoteLimit();
   newItems();
+}
 
-});
-
-imgArray[2].addEventListener('click', function() {
+function handleImg3() {
   totalVotes++;
-  if (totalVotes > 24) {
-    alert('You have completed the survey!');
-  }
   allItems[prevRandomArray[2]].voteCount ++;
   console.log('Voted for image 3');
-
+  checkVoteLimit();
   newItems();
+}
 
-});
+// These are the event listeners for each image.
+imgArray[0].addEventListener('click', handleImg1);
+
+imgArray[1].addEventListener('click', handleImg2);
+
+imgArray[2].addEventListener('click', handleImg3);
 
 
-// This line displays 3 images upon loading the page.
+// This line displays 3 random images upon loading the page.
 newItems();
