@@ -49,7 +49,7 @@ var prevRandomArray = [];
 function newItems() {
   var randomArray = [];
 
-  for (var i = 0 ; i < 3 ; i++) {
+  for (var i = 0 ; i < imgArray.length ; i++) {
     var randomIndex = Math.floor(Math.random() * allItems.length);
 
     while (randomArray.includes(randomIndex) || prevRandomArray.includes(randomIndex)) {
