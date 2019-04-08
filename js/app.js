@@ -1,6 +1,10 @@
 // Array that will contain the objects of all catalogue items
 var allItems = [];
 
+// Variable that tracks the total number of votes
+var totalVotes = 0;
+
+// This array contains the DOM elements for the 3 images onscreen.
 var imgArray = [document.getElementById('img1'), document.getElementById('img2'), document.getElementById('img3')];
 
 
@@ -59,33 +63,49 @@ function newItems() {
     allItems[randomIndex].viewCount ++;
   }
 
-  console.log(randomArray);
   prevRandomArray = randomArray;
 }
 
 
 // These are the event listeners for all 3 images.
 
+
 imgArray[0].addEventListener('click', function() {
+  totalVotes++;
+  if (totalVotes > 24) {
+    alert('You have completed the survey!');
+  }
   allItems[prevRandomArray[0]].voteCount ++;
   console.log('Voted for image 1');
+
   newItems();
 
 });
 
 imgArray[1].addEventListener('click', function() {
+  totalVotes++;
+  if (totalVotes > 24) {
+    alert('You have completed the survey!');
+  }
   allItems[prevRandomArray[1]].voteCount ++;
   console.log('Voted for image 2');
+
   newItems();
 
 });
 
 imgArray[2].addEventListener('click', function() {
+  totalVotes++;
+  if (totalVotes > 24) {
+    alert('You have completed the survey!');
+  }
   allItems[prevRandomArray[2]].voteCount ++;
   console.log('Voted for image 3');
+
   newItems();
 
 });
 
 
+// This line displays 3 images upon loading the page.
 newItems();
