@@ -170,20 +170,20 @@ function drawChart() {
           fontColor: 'rgb(250,223,118,1)'
         }
       },
-
       scales: {
         yAxes: [{
           ticks: {
             max: 10,
             min: 0,
             stepSize: 1.0,
-            fontColor: 'rgb(250,223,118,1)'
+            fontColor: 'rgb(250,223,118,1)',
+            fontSize: 18
           }
         }],
         xAxes: [{
           ticks: {
             fontColor: 'rgb(250,223,118,1)',
-            fontSize: 14,
+            fontSize: 18,
             stepSize: 1,
             beginAtZero: true,
           }
