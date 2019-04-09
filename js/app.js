@@ -189,23 +189,36 @@ function drawChart() {
       datasets: [{
         label: '# of Votes',
         data: votes,
-        backgroundColor: 'rgb(250,223,118,0.8)',
+        backgroundColor: 'rgb(250,223,118,1)',
         borderColor: 'rgb(250,223,118,1)',
         borderWidth: 1
       }]
     },
     options: {
-      responsive: false
-    },
-    scales: {
-      yAxes: [{
-        ticks: {
-          max: 15,
-          min: 0,
-          stepSize: 1.0
-        }
-      }],
-      fontColor: 'rgb(250,223,118,1)'
+      responsive: false,
+      title: {
+        display: true,
+        fontColor: 'rgb(250,223,118,1)',
+        fontTitle: 'Testing'
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            max: 10,
+            min: 0,
+            stepSize: 1.0,
+            fontColor: 'rgb(250,223,118,1)'
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: 'rgb(250,223,118,1)',
+            fontSize: 14,
+            stepSize: 1,
+            beginAtZero: true,
+          }
+        }]
+      }
     }
   });
   chartDrawn = true;
