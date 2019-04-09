@@ -104,6 +104,8 @@ function checkVoteLimit() {
       resultsTable.appendChild(trEl); // This line adds the finished row to the bottom of the table.
     }
 
+    updateVotesArray();
+
     // These lines remove the event listeners, to disallow further voting.
     imgArray[0].removeEventListener('click',handleImg1);
     imgArray[1].removeEventListener('click',handleImg2);
@@ -162,7 +164,34 @@ newItems();
 
 
 
-// var votes = [];
-// var items = [];
 
-// for va
+var items = [];
+for (var i = 0 ; i < allItems.length ; i++) {
+  items[i] = allItems[i].itemName;
+}
+
+var votes = [];
+function updateVotesArray() {
+  for (var i = 0 ; i < allItems.length ; i++) {
+    votes[i] = allItems[i].voteCount;
+  }
+}
+
+var ctx = document.getElementById('resultsChart').getContext('2d');
+var resultsChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: items,
+    datasets: [{
+      label: '# of Votes',
+      data: votes,
+      backgroundColor: 'rgb(250,223,118,0.2)',
+      borderColor: 'rgb(250,223,118,1)',
+      borderWidth: 1
+    }]
+
+  }
+
+
+
+});
