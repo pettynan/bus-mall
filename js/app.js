@@ -10,8 +10,6 @@ var imgArray = [document.getElementById('img1'), document.getElementById('img2')
 // This variable is the DOM element for the image container.
 // var imgContainer = document.getElementById('imgContainer');
 
-var resultsTable = document.getElementById('resultsTable');
-
 var chartDrawn = false;
 
 // Constructor function for all catalogue item objects.
@@ -76,35 +74,6 @@ function newItems() {
 // This function runs after 25 votes have been cast.
 function checkVoteLimit() {
   if (totalVotes === 25) {
-    var theadEl = document.createElement('thead');
-    var trEl = document.createElement('tr');
-    var thEl = document.createElement('th');
-    thEl.textContent = 'Item Name';
-    trEl.appendChild(thEl);
-    var thVoteEl = document.createElement('th');
-    thVoteEl.textContent = '# of Votes';
-    trEl.appendChild(thVoteEl);
-    var thViewEl = document.createElement('th');
-    thViewEl.textContent = '# of Views';
-    trEl.appendChild(thViewEl);
-    theadEl.appendChild(trEl);
-    resultsTable.appendChild(theadEl);
-
-
-    for (var i = 0 ; i < allItems.length ; i++) {
-      trEl = document.createElement('tr');
-      thEl = document.createElement('th');
-      thEl.textContent = allItems[i].itemName;
-      trEl.appendChild(thEl);
-      var tdVoteEl = document.createElement('td');
-      tdVoteEl.textContent = allItems[i].voteCount;
-      trEl.appendChild(tdVoteEl);
-      var tdViewEl = document.createElement('td');
-      tdViewEl.textContent = allItems[i].viewCount;
-      trEl.appendChild(tdViewEl);
-
-      resultsTable.appendChild(trEl); // This line adds the finished row to the bottom of the table.
-    }
 
     updateVotesArray();
     drawChart();
@@ -189,18 +158,19 @@ function drawChart() {
       datasets: [{
         label: '# of Votes',
         data: votes,
-        backgroundColor: 'rgb(250,223,118,1)',
+        backgroundColor: 'rgb(250,223,118,0.9)',
         borderColor: 'rgb(250,223,118,1)',
         borderWidth: 1
       }]
     },
     options: {
       responsive: false,
-      title: {
-        display: true,
-        fontColor: 'rgb(250,223,118,1)',
-        fontTitle: 'Testing'
+      legend: {
+        labels: {
+          fontColor: 'rgb(250,223,118,1)'
+        }
       },
+
       scales: {
         yAxes: [{
           ticks: {
