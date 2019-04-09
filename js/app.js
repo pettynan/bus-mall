@@ -7,6 +7,9 @@ var totalVotes = 0;
 // This array contains the DOM elements for the 3 images onscreen.
 var imgArray = [document.getElementById('img1'), document.getElementById('img2'), document.getElementById('img3')];
 
+// This variable is the DOM element for the image container.
+// var imgContainer = document.getElementById('imgContainer');
+
 var resultsTable = document.getElementById('resultsTable');
 
 // Constructor function for all catalogue item objects.
@@ -109,6 +112,8 @@ function checkVoteLimit() {
   }
 }
 
+// For refactoring, try using a single event handler and 'event.target.______' to tell which item was clicked.
+
 // These are event handlers for each image.
 function handleImg1() {
   totalVotes++;
@@ -134,6 +139,15 @@ function handleImg3() {
   newItems();
 }
 
+// function handleUserClick(event) {
+//   if (event.target) {}
+
+
+// }
+
+// imgContainer.addEventListener('click', handleUserClick);
+
+
 // These are the event listeners for each image.
 imgArray[0].addEventListener('click', handleImg1);
 
@@ -144,3 +158,11 @@ imgArray[2].addEventListener('click', handleImg3);
 
 // This line displays 3 random images upon loading the page.
 newItems();
+
+
+
+
+// var votes = [];
+// var items = [];
+
+// for va
