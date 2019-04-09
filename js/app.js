@@ -149,6 +149,7 @@ function updateVotesArray() {
     votes[i] = allItems[i].voteCount;
   }
 }
+
 function drawChart() {
   var ctx = document.getElementById('resultsChart').getContext('2d');
   var resultsChart = new Chart(ctx, {
